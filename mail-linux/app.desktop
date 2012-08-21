@@ -1,0 +1,6 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=mail-linux
+Exec=mail-linux
+Terminal=false
