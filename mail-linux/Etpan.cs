@@ -4,8 +4,8 @@ using System.Runtime.InteropServices;
 namespace maillinux
 {
 	public class Etpan
-	{
-		enum Result {
+	{		
+		public enum Result {
 			no_error,
 			invalid_parameter,
 			bad_state,
@@ -17,7 +17,7 @@ namespace maillinux
 			invalid_response
 		};
 		
-		enum Distinguished_folder_id {
+		public enum Distinguished_folder_id {
 			_none,
 			_min,
 			calendar,
@@ -39,21 +39,29 @@ namespace maillinux
 			_count
 		};
 		
-		struct CArray {
-			System.IntPtr array;
-			int len;
-			int max;
+		public struct CArray {
+			[MarshalAs (UnmanagedType.ByValArray)]
+			public int[] array;
+			public int len;
+			public int max;
+		}
+		
+		public struct OwxsConnectionSettings {
+			public string as_url;
+			public string oof_url;
+			public string um_url;
+			public string oab_url;
 		}
 		
 		[DllImport("etpan")]
-		protected static extern int oxws_new();
+		public static extern System.IntPtr oxws_new();
 		[DllImport("etpan")]
-		protected static extern Result oxws_set_connection_settings(System.IntPtr oxws, System.IntPtr setting);
+		public static extern Result oxws_set_connection_settings(System.IntPtr oxws, ref OwxsConnectionSettings setting);
 		[DllImport("etpan")]
-		protected static extern Result oxws_autodiscover_connection_settings(System.IntPtr oxws, string host, string mail, string user, string pw, string domain);
+		public static extern Result oxws_autodiscover_connection_settings(System.IntPtr oxws, string host, string mail, string user, string pw, string domain);
 		[DllImport("etpan")]
-		protected static extern Result oxws_connect(System.IntPtr oxws, string user, string pw, string domain);
+		public static extern Result oxws_connect(System.IntPtr oxws, string user, string pw, string domain);
 		[DllImport("etpan")]
-		protected static extern Result oxws_find_item(System.IntPtr oxws, Distinguished_folder_id dfolder_id, string folder_id, int count, [Out] Carray carrayptr);
+		public static extern Result oxws_find_item(System.IntPtr oxws, Distinguished_folder_id dfolder_id, string folder_id, int count, [Out] System.IntPtr carrayptr);
 	}
 }
