@@ -81,6 +81,17 @@
     <None Include="..\..\libetpan\src\.libs\libetpan.so">
       <Link>libetpan.so</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Gettext-ScanForTranslations>false</Gettext-ScanForTranslations>
+    </None>
+    <None Include="..\..\curl\lib\libcurl.so">
+      <Link>libcurl.so</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Gettext-ScanForTranslations>false</Gettext-ScanForTranslations>
+    </None>
+    <None Include="..\..\libmail\.libs\libmail.so">
+      <Link>libmail.so</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Gettext-ScanForTranslations>false</Gettext-ScanForTranslations>
     </None>
   </ItemGroup>
 </Project>

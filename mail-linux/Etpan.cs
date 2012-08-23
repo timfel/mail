@@ -4,64 +4,108 @@ using System.Runtime.InteropServices;
 namespace maillinux
 {
 	public class Etpan
-	{		
-		public enum Result {
-			no_error,
-			invalid_parameter,
-			bad_state,
-			internal_error,
-			connect,
-			no_ews,
-			autodiscover_unavailable,
-			request_failed,
-			invalid_response
-		};
+	{
+		[DllImport("mail")]
+		static extern System.IntPtr mail_new (mail_type type);
+
+		[DllImport("mail")]
+		static extern bool mail_discover_settings (System.IntPtr account, string host, string mail, string user, string pw);
 		
-		public enum Distinguished_folder_id {
-			_none,
-			_min,
-			calendar,
-			contacts,
-			deleteditems,
-			drafts,
-			inbox,
-			journal,
-			notes,
-			outbox,
-			sentitems,
-			tasks,
-			msgfolderroot,
-			root,
-			junkemail,
-			searchfolders,
-			voicemail,
-			_max,
-			_count
-		};
+		[DllImport("mail")]
+		static extern bool mail_discover_settings (System.IntPtr account, string host, string mail, string user, string pw, string domain);
 		
-		public struct CArray {
-			[MarshalAs (UnmanagedType.ByValArray)]
-			public int[] array;
-			public int len;
-			public int max;
+		[DllImport("mail")]
+		static extern bool mail_set_settings (System.IntPtr account, string as_url, string oof_url, string um_url, string oab_url);
+		
+		[DllImport("mail")]
+		static extern bool mail_connect (System.IntPtr account, string user, string pw, string domain);
+		
+		[DllImport("mail")]
+		static extern string mail_get_error_str ();
+		
+		enum mail_type
+		{
+			POP3,
+			IMAP,
+			SMTP,
+			OXWS
 		}
 		
-		public struct OwxsConnectionSettings {
-			public string as_url;
-			public string oof_url;
-			public string um_url;
-			public string oab_url;
-		}
+		public class Error: System.Exception
+		{
+			public Error (string msg) : base (msg)
+			{
+			}
+		};
 		
-		[DllImport("etpan")]
-		public static extern System.IntPtr oxws_new();
-		[DllImport("etpan")]
-		public static extern Result oxws_set_connection_settings(System.IntPtr oxws, ref OwxsConnectionSettings setting);
-		[DllImport("etpan")]
-		public static extern Result oxws_autodiscover_connection_settings(System.IntPtr oxws, string host, string mail, string user, string pw, string domain);
-		[DllImport("etpan")]
-		public static extern Result oxws_connect(System.IntPtr oxws, string user, string pw, string domain);
-		[DllImport("etpan")]
-		public static extern Result oxws_find_item(System.IntPtr oxws, Distinguished_folder_id dfolder_id, string folder_id, int count, [Out] System.IntPtr carrayptr);
+		public class Oxws
+		{	
+			public string email_address { get; set; }
+			
+			string _username;
+
+			public string username {
+				get {
+					if (this._username == null) {
+						this._username = email_address.Split ('@') [0];
+					}
+					return this._username;
+				}
+				set { this._username = value; }
+			}
+			
+			public string password { get; set; }
+
+			public string host { get; set; }
+
+			public string domain { get; set; }
+
+			System.IntPtr oxws;
+			
+			public Oxws (string email_address, string password)
+			{
+				this.email_address = email_address;
+				this.password = password;
+				this.oxws = mail_new (mail_type.OXWS);
+			}
+			
+			public void connect ()
+			{
+				if (!mail_connect (oxws, username, password, domain)) {
+					var msg = mail_get_error_str ();
+					throw new Error (mail_get_error_str ());
+				}
+			}
+			
+			public void discover_settings ()
+			{
+				if (!mail_discover_settings (oxws, host, email_address, username, password, domain)) {
+					throw new Error (mail_get_error_str ());
+				}
+			}
+			
+			public string as_url {
+				get { return ""; }
+				set { mail_set_settings (oxws, value, null, null, null); }
+			}
+			
+			public string oof_url {
+				get { return ""; }
+				set { mail_set_settings (oxws, null, value, null, null); }
+			}
+			
+			public string um_url {
+				get { return ""; }
+				set { mail_set_settings (oxws, null, null, value, null); }
+			}
+			
+			public string oab_url {
+				get { return ""; }
+				set { mail_set_settings (oxws, null, null, null, value); }
+			}
+		}
+
+		[DllImport("curl")]
+		public static extern System.IntPtr curl_version ();
 	}
 }

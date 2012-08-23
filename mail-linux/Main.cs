@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Gtk;
 
 namespace maillinux
@@ -10,32 +11,17 @@ namespace maillinux
 			Application.Init ();
 			MainWindow win = new MainWindow ();
 			
-			var oxws = Etpan.oxws_new();
-			var result = Etpan.oxws_autodiscover_connection_settings(oxws,
-			                                                         "owa2.hpi.uni-potsdam.de",
-			                                                         args[0] + "@student.hpi.uni-potsdam.de",
-			                                                         args[0],
-			                                                         args[1],
-			                                                         "HPI");
-			if (result == Etpan.Result.autodiscover_unavailable) {
-				var settings = new Etpan.OwxsConnectionSettings();
-				settings.as_url = "https://owa2.hpi.uni-potsdam.de/EWS/Exchange.asmx";
-				result = Etpan.oxws_set_connection_settings(oxws, ref settings);
-			}
-			if (result != Etpan.Result.no_error) {
-				throw(new Exception(String.Format("Error: {0}", result.ToString().ToUpper())));
+			System.Console.WriteLine (System.Runtime.InteropServices.Marshal.PtrToStringAuto (Etpan.curl_version ()));
+			
+			var oxws = new Etpan.Oxws ("tim.felgentreff@student.hpi.uni-potsdam.de", "hallo12");
+			try {
+				oxws.discover_settings ();
+			} catch (Etpan.Error e) {
+				System.Console.WriteLine (e.Message);
+				oxws.as_url = "https://owa2.hpi.uni-potsdam.de/EWS/Exchange.asmx";
 			}
 			
-			result = Etpan.oxws_connect(oxws, args[0], args[1], "HPI");
-			if (result != Etpan.Result.no_error) {
-				throw(new Exception(String.Format("Error: {0}", result.ToString().ToUpper())));
-			}
-			
-			var itemsptrptr = new System.IntPtr();
-			Etpan.oxws_find_item(oxws, Etpan.Distinguished_folder_id.inbox, null, 10, itemsptrptr);
-			var itemsptr = System.Runtime.InteropServices.Marshal.ReadIntPtr(itemsptrptr);
-			var items = (Etpan.CArray)System.Runtime.InteropServices.Marshal.PtrToStructure(itemsptr, typeof(Etpan.CArray));
-			var items_array = items.array;
+			oxws.connect ();
 
 			win.Show ();
 			Application.Run ();
