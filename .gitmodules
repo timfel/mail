@@ -1,0 +1,3 @@
+[submodule "lib/libmail"]
+	path = lib/libmail
+	url = git@github.com:timfel/libmail.git
