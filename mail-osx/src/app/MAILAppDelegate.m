@@ -1,10 +1,12 @@
 #import "MAILAppDelegate.h"
 
+#import <libmail/libmail.h>
+
 @implementation MAILAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-  // Insert code here to initialize your application
+  NSLog(@"%s", mail_get_error_str());
 }
 
 @end
