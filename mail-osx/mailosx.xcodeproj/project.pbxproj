@@ -49,7 +49,6 @@
 		8AD622CF1624C1D700884F6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AD622D11624C1D700884F6A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8AD622D31624C1D700884F6A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		8AD622D51624C1D700884F6A /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		8AD622D71624C1D700884F6A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		8AD622D91624C1D700884F6A /* MAILAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAILAppDelegate.h; sourceTree = "<group>"; };
 		8AD622DA1624C1D700884F6A /* MAILAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAILAppDelegate.m; sourceTree = "<group>"; };
@@ -140,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				8AD622D01624C1D700884F6A /* InfoPlist.strings */,
-				8AD622D51624C1D700884F6A /* Prefix.pch */,
 				8AD622CF1624C1D700884F6A /* Info.plist */,
 				8AD622D31624C1D700884F6A /* main.m */,
 			);
@@ -424,8 +422,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = src/other/Prefix.pch;
 				INFOPLIST_FILE = src/other/Info.plist;
 				PRODUCT_NAME = mailosx;
 				WRAPPER_EXTENSION = app;
@@ -436,8 +432,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = src/other/Prefix.pch;
 				INFOPLIST_FILE = src/other/Info.plist;
 				PRODUCT_NAME = mailosx;
 				WRAPPER_EXTENSION = app;
@@ -453,8 +447,6 @@
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/mailosx-fibqugzhjoegskdqlpetgyzsffuo/Build/Products/Debug\"",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = src/other/Prefix.pch;
 				INFOPLIST_FILE = tests/other/Info.plist;
 				PRODUCT_NAME = mailosxTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -471,8 +463,6 @@
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/mailosx-fibqugzhjoegskdqlpetgyzsffuo/Build/Products/Debug\"",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = src/other/Prefix.pch;
 				INFOPLIST_FILE = tests/other/Info.plist;
 				PRODUCT_NAME = mailosxTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
