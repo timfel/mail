@@ -1,12 +1,13 @@
 #import "MAILAppDelegate.h"
-
-#import <libmail/libmail.h>
+#import "TestConnectViewController.h"
 
 @implementation MAILAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-  NSLog(@"%s", mail_get_error_str());
+  self.viewController = [[TestConnectViewController alloc] init];
+  [self.viewController.view setFrame: [self.window.contentView frame]];
+  [self.window.contentView addSubview: self.viewController.view];
 }
 
 @end
