@@ -28,6 +28,9 @@
   NSString* password = [[self.form cellAtIndex: 2] stringValue]; if(password.length==0) password = nil;
   NSString* domain = [[self.form cellAtIndex: 3] stringValue]; if(domain.length==0) domain = nil;
   NSString* host = [[self.form cellAtIndex: 4] stringValue]; if(host.length==0) host = nil;
+  if(username == nil) {
+    username = [email substringToIndex: [email rangeOfString:@"@"].location];
+  }
   
   mail_account* account = mail_new(OXWS);
   if(account == NULL)
