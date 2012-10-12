@@ -18,7 +18,7 @@ namespace maillinux
 				oxws.discover_settings ();
 			} catch (Etpan.Error e) {
 				System.Console.WriteLine (e.Message);
-				oxws.as_url = "https://owa2.hpi.uni-potsdam.de/EWS/Exchange.asmx";
+				oxws.set_settings("https://owa2.hpi.uni-potsdam.de/EWS/Exchange.asmx");
 			}
 			
 			oxws.connect ();
