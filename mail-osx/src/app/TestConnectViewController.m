@@ -1,6 +1,7 @@
 #import "TestConnectViewController.h"
 
-#import <libmail/libmail.h>
+#import "Etpan.h"
+
 
 @interface TestConnectViewController ()
 
@@ -31,16 +32,17 @@
   if(username == nil) {
     username = [email substringToIndex: [email rangeOfString:@"@"].location];
   }
+  EtpanOxws* oxws = [[EtpanOxws alloc] init];
+  oxws.email_address = email;
+  oxws.username = username;
+  oxws.password = password;
+  oxws.domain = domain;
+  oxws.host = host;
   
-  mail_account* account = mail_new(OXWS);
-  if(account == NULL)
-    NSLog(@"new: %s", mail_get_error_str());
-  else if(!mail_discover_settings(account, host.UTF8String, email.UTF8String, username.UTF8String, password.UTF8String, domain.UTF8String))
-    NSLog(@"discover: %s", mail_get_error_str());
-  else if(!mail_connect(account, username.UTF8String, password.UTF8String, domain.UTF8String))
-    NSLog(@"connect: %s", mail_get_error_str());
-  else
-    NSLog(@"SUCCESS");
+  [oxws discoverConnectionSettings];
+  [oxws connect];
+  
+  NSLog(@"SUCCESS");
 }
 
 @end

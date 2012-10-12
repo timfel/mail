@@ -11,6 +11,8 @@
 		8A390FB8162620DA00B2B75A /* TestConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A390FB7162620DA00B2B75A /* TestConnectViewController.m */; };
 		8AB820EA1625C9DB00BD2B26 /* libmail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AB820D01625C9C300BD2B26 /* libmail.framework */; };
 		8AB820EC1625C9F000BD2B26 /* libmail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AB820EB1625C9E300BD2B26 /* libmail.framework */; };
+		8AC05A9F16281BA400C7A6EA /* EtpanOxws.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC05A9E16281BA400C7A6EA /* EtpanOxws.m */; };
+		8AC05AA216281FF700C7A6EA /* EtpanException.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC05AA116281FF700C7A6EA /* EtpanException.m */; };
 		8AD622C81624C1D700884F6A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD622C71624C1D700884F6A /* Cocoa.framework */; };
 		8AD622D21624C1D700884F6A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8AD622D01624C1D700884F6A /* InfoPlist.strings */; };
 		8AD622D41624C1D700884F6A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD622D31624C1D700884F6A /* main.m */; };
@@ -46,6 +48,11 @@
 		8A390FB7162620DA00B2B75A /* TestConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestConnectViewController.m; sourceTree = "<group>"; };
 		8AB820B21625C9C300BD2B26 /* libmail.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libmail.xcodeproj; path = "../lib/libmail/build-mac/libmail.xcodeproj"; sourceTree = "<group>"; };
 		8AB820EB1625C9E300BD2B26 /* libmail.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libmail.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/mailosx-fibqugzhjoegskdqlpetgyzsffuo/Build/Products/Debug/libmail.framework"; sourceTree = "<group>"; };
+		8AC05A9D16281BA400C7A6EA /* EtpanOxws.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EtpanOxws.h; sourceTree = "<group>"; };
+		8AC05A9E16281BA400C7A6EA /* EtpanOxws.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EtpanOxws.m; sourceTree = "<group>"; };
+		8AC05AA016281FF700C7A6EA /* EtpanException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EtpanException.h; sourceTree = "<group>"; };
+		8AC05AA116281FF700C7A6EA /* EtpanException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EtpanException.m; sourceTree = "<group>"; };
+		8AC05AA31628216D00C7A6EA /* Etpan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Etpan.h; sourceTree = "<group>"; };
 		8AD622C31624C1D700884F6A /* mailosx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mailosx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AD622C71624C1D700884F6A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8AD622CA1624C1D700884F6A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -97,6 +104,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		8AC05A9C16281B6300C7A6EA /* etpan */ = {
+			isa = PBXGroup;
+			children = (
+				8AC05A9D16281BA400C7A6EA /* EtpanOxws.h */,
+				8AC05A9E16281BA400C7A6EA /* EtpanOxws.m */,
+				8AC05AA016281FF700C7A6EA /* EtpanException.h */,
+				8AC05AA116281FF700C7A6EA /* EtpanException.m */,
+				8AC05AA31628216D00C7A6EA /* Etpan.h */,
+			);
+			path = etpan;
+			sourceTree = "<group>";
+		};
 		8AD622B81624C1D700884F6A = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +152,7 @@
 		8AD622CD1624C1D700884F6A /* src */ = {
 			isa = PBXGroup;
 			children = (
+				8AC05A9C16281B6300C7A6EA /* etpan */,
 				8AD623011624C3B700884F6A /* about */,
 				8AD623001624C3A300884F6A /* app */,
 				8AD622CE1624C1D700884F6A /* other */,
@@ -318,6 +338,8 @@
 				8AD622D41624C1D700884F6A /* main.m in Sources */,
 				8AD622DB1624C1D700884F6A /* MAILAppDelegate.m in Sources */,
 				8A390FB8162620DA00B2B75A /* TestConnectViewController.m in Sources */,
+				8AC05A9F16281BA400C7A6EA /* EtpanOxws.m in Sources */,
+				8AC05AA216281FF700C7A6EA /* EtpanException.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
