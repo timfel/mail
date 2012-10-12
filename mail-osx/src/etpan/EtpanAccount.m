@@ -5,7 +5,7 @@
 @implementation EtpanAccount
 
 
-- (id) initWithType:(enum mail_type)type {
+- (id) initWithType:(mail_type)type {
   self = [super init];
   if(self != nil) {
     

@@ -7,6 +7,6 @@
 
 @property mail_account* account;
 
-- (id) initWithType: (enum mail_type) type;
+- (id) initWithType: (mail_type) type;
 
 @end
