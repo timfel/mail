@@ -6,7 +6,7 @@
 
 
 - (id) init {
-  self = [self initWithType:IMAP];
+  self = [self initWithType:MAIL_TYPE_IMAP];
   return self;
 }
 

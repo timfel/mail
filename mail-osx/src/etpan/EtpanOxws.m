@@ -6,7 +6,7 @@
 
 
 - (id) init {
-  self = [self initWithType:OXWS];
+  self = [self initWithType:MAIL_TYPE_OXWS];
   return self;
 }
 
