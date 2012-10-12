@@ -1,12 +1,10 @@
 #import <Foundation/Foundation.h>
 
-#import <libmail/libmail.h>
+#import "EtpanAccount.h"
 
 
-@interface EtpanOxws : NSObject
+@interface EtpanOxws : EtpanAccount
 
-
-@property mail_account* oxws;
 
 @property NSString* email_address;
 @property NSString* username;
@@ -14,8 +12,6 @@
 @property NSString* password;
 @property NSString* host;
 
-
-- (id) init;
 
 - (void) discoverConnectionSettings;
 - (void) setConnectionSettings: (NSString*) asUrl : (NSString*) oofUrl : (NSString*) umUrl : (NSString*) oabUrl;

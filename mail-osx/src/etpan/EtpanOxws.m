@@ -6,38 +6,26 @@
 
 
 - (id) init {
-  self = [super init];
-  if(self != nil) {
-    
-    self.oxws = mail_new(OXWS);
-    if(self.oxws == NULL) {
-      @throw [EtpanException exceptionFromLastError];
-    }
-    
-  }
+  self = [self initWithType:OXWS];
   return self;
-}
-
-- (void) dealloc {
-  mail_free(self.oxws);
 }
 
 
 - (void) discoverConnectionSettings {
-  if(!mail_discover_settings(self.oxws, self.host.UTF8String, self.email_address.UTF8String, self.username.UTF8String, self.password.UTF8String, self.domain.UTF8String)) {
+  if(!mail_discover_settings(self.account, self.host.UTF8String, self.email_address.UTF8String, self.username.UTF8String, self.password.UTF8String, self.domain.UTF8String)) {
     @throw [EtpanException exceptionFromLastError];
   }
 }
 
 - (void) setConnectionSettings: (NSString*) asUrl : (NSString*) oofUrl : (NSString*) umUrl : (NSString*) oabUrl {
-  if(!mail_set_settings(self.oxws, asUrl.UTF8String, oofUrl.UTF8String, umUrl.UTF8String, oabUrl.UTF8String)) {
+  if(!mail_set_settings(self.account, asUrl.UTF8String, oofUrl.UTF8String, umUrl.UTF8String, oabUrl.UTF8String)) {
     @throw [EtpanException exceptionFromLastError];
   }
 }
 
 
 - (void) connect {
-  if(!mail_connect(self.oxws, self.username.UTF8String, self.password.UTF8String, self.domain.UTF8String)) {
+  if(!mail_connect(self.account, self.username.UTF8String, self.password.UTF8String, self.domain.UTF8String)) {
     @throw [EtpanException exceptionFromLastError];
   }
 }
